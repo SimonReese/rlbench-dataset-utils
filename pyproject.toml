@@ -1,0 +1,16 @@
+[project]
+name = "rlbench_dataset_utils"
+version = "0.1.0"
+description = "Utility functions to load RLBench datasets"
+dependencies = [
+    "numpy",
+    "natsort"
+]
+authors = [{ name="Simone Peraro" }]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
