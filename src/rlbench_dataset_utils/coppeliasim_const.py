@@ -1,0 +1,9 @@
+sim_rendermode_opengl = 0
+sim_rendermode_auxchannels = 1
+sim_rendermode_colorcoded = 2
+sim_rendermode_povray = 3
+sim_rendermode_reserved = 4
+sim_rendermode_extrenderer = 5
+sim_rendermode_extrendererwindowed = 6
+sim_rendermode_opengl3 = 7
+sim_rendermode_opengl3windowed = 8
