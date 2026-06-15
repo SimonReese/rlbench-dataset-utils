@@ -85,6 +85,35 @@ def rgb_handles_to_mask(rgb_coded_handles:np.ndarray):
             rgb_coded_handles[:, :, 1] * 256 +
             rgb_coded_handles[:, :, 2] * 256 * 256)
 
+# Get list of variations for task
+def get_variations_ids(dataset_path: str, task_name:str) -> List[int]:
+    """Retuns a list of indices of variations for a given task in a stored dataset
+    
+        :param str dataset_path: path to RLBench dataset root folder
+        :param str task_name: name of task to consider in the dataset
+        
+        :return List[int]: a list of indices, one for each stored variation
+        
+        :raises RuntimeError: if something is wrong with indices in the folder
+    """
+    # Open task folder
+    variation_folders = listdir(join(dataset_path, task_name))
+    variation_ids = []
+    id: int = 0
+    while len(variation_ids) != len(variation_folders):
+        if VARIATIONS_FOLDER % id in variation_folders:
+            variation_ids.append(id)
+        id += 1
+
+        # Make sure we have a good dataset
+        if id >= len(variation_folders) * 2: raise RuntimeError(
+            f"Error while loading variation ids for task {task_name} in {dataset_path}:\n ",
+            f"The folder contains {len(variation_folders)} folders but only {len(variation_ids)} ids were found.\n",
+            f"Nevertheless we were lookin up to id {id} which is 2*#folders in the task folder.\n",
+            f"Someting feels wrong. Please check dataset integrity.\n",
+            f"Discovered ids: {variation_ids}\nVariation folders: {variation_folders}")
+    return variation_ids
+
 # get_stored_demos requires patch to load this module instead of full rlbench
 def get_stored_demos(amount: int, image_paths: bool, dataset_root: str,
                      variation_number: int, task_name: str,
