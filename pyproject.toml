@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Utility functions to load RLBench datasets"
 dependencies = [
     "numpy",
-    "natsort"
+    "natsort",
+    "pillow",
+    "scipy"
 ]
 authors = [{ name="Simone Peraro" }]
 
